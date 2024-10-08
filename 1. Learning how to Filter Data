@@ -1,0 +1,38 @@
+#Task1- queries to return lists of films that meet the following conditions:
+#1-Film title contains the word Uptown in any position
+
+SELECT title, film_ID, description
+FROM film
+WHERE title like '%Uptown%'
+
+#2- Film length is more than 120 minutes and rental rate is more than 2.99
+SELECT title, film_ID, description
+FROM film
+WHERE rental_rate > 2.99 AND length > 120
+
+#3 - Rental duration is between 3 and 7 days (where 3 and 7 aren’t inclusive)
+SELECT title, film_ID, description
+FROM film
+WHERE rental_duration BETWEEN 3 AND 7
+
+#4 - Film replacement cost is less than 14.99
+SELECT title, film_ID, description
+FROM film
+WHERE replacement_cost < 14.99
+
+#5 - Film rating is either PG or G
+SELECT title, film_ID, description, rating
+FROM film
+WHERE rating IN ('PG','G')
+
+
+#Task2- count of the movies, average rental rate, and maximum and minimum rental durations. 
+
+SELECT rating, 
+AVG (rental_rate) AS average_movie_rental_rate, 
+MIN (rental_duration) AS minimum_rental_duration, 
+MAX (rental_duration) AS maximum_rental_duration, 
+COUNT(rating) AS count_of_movies
+FROM film
+WHERE rating IN ('PG','G')
+GROUP BY rating
